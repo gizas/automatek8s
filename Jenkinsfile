@@ -1,12 +1,7 @@
 pipeline {
-    agent none
+    agent any
     stages {
         stage('Build') {
-            agent {
-                docker {
-                    image 'python:3.10.8-alpine3.15'
-                }
-            }
             steps {
 
                 withCredentials([usernamePassword(credentialsId: 'elastic_kibana_token', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
