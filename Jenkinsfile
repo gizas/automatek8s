@@ -1,10 +1,8 @@
 pipeline {
+    agent any
     stages {
         stage('Build') {
-            agent any {
-
-                    image 'python:2-alpine'
-                }
+            agent {any {image: 'python:2-alpine'}}
             steps {
 
                 withCredentials([usernamePassword(credentialsId: 'elastic_kibana_token', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
