@@ -12,9 +12,9 @@ pipeline {
                 echo USERNAME
                 // or inside double quotes for string interpolation
                 echo "username is $USERNAME"
-                }
                 sh 'python3 --version'
                 sh 'python3 kibana_api.py -apikey $PASSWORD'
+                }
             }
         }
     }
