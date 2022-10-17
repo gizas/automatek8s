@@ -13,7 +13,7 @@ pipeline {
                 // or inside double quotes for string interpolation
                 echo "username is $USERNAME"
                 sh 'python3 --version'
-                sh 'python3 kibana_api.py -apikey $PASSWORD'
+                sh 'python3 kibana_api.py -apikey $PASSWORD -url https://elastic-package-stack_kibana_1:5601'
                 }
             }
         }
