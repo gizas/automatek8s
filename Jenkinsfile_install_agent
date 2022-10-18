@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'wget https://raw.githubusercontent.com/elastic/elastic-agent/main/deploy/kubernetes/elastic-agent-managed-kubernetes.yaml'
+                sh 'curl https://raw.githubusercontent.com/elastic/elastic-agent/main/deploy/kubernetes/elastic-agent-managed-kubernetes.yaml --output elastic-agent-managed-kubernetes.yaml'
                 sh 'sed -i -e "s/token-id/${params.TOKENID}/g" elastic-agent-managed-kubernetes.yaml'
                 sh 'kubectl apply -f elastic-agent-managed-kubernetes.yaml'
             }
