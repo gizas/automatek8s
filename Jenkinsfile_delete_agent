@@ -31,6 +31,10 @@ pipeline {
                     cd ../ && rm -rf automatek8s
                     '''                    
                 }
+                sh '''
+                curl https://raw.githubusercontent.com/elastic/elastic-agent/main/deploy/kubernetes/elastic-agent-managed-kubernetes.yaml --output elastic-agent-managed-kubernetes.yaml
+                kubectl delete -f elastic-agent-managed-kubernetes.yaml
+                '''
             }
         }
     }
