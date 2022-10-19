@@ -1,7 +1,6 @@
 pipeline {
     agent any
     parameters {
-        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
         password(name: 'TOKENID', defaultValue: 'SECRET', description: 'Enter a token for the Managed Agent')
     }
     stages {
