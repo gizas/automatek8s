@@ -24,7 +24,7 @@ pipeline {
                 sh '''git clone https://github.com/gizas/automatek8s.git
                 rm -rf automatek8s/manifests/
                 '''
-                dir("automatek8s/manifests/"){
+                dir("automatek8s/"){
                     sh  '''
                     git checkout TestBranch
                     git add ./
@@ -33,6 +33,7 @@ pipeline {
                     git commit -m "Updating Manifest"
                     git push https://gizas:${PASSWORD}@github.com/gizas/automatek8s.git
                     '''                    
+                }
             }
         }
     }
