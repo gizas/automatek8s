@@ -19,10 +19,12 @@ pipeline {
                     yes | cp -r elastic-agent-managed-kubernetes.yaml automatek8s/manifests/
                     '''
                     dir("automatek8s/manifests/"){
-                        sh  '''git fetch --all
+                        sh  '''
                         pwd
                         git checkout TestBranch
-                        git add elastic-agent-managed-kubernetes.yaml
+                        git add ./
+                        git config --global user.email "andreas.gkizas@elastic.co"
+                        git config --global user.name "gizas"
                         git commit -m "Updating Manifest"
                         git push https://gizas:${PASSWORD}@github.com/gizas/automatek8s.git
                         '''
