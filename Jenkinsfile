@@ -1,3 +1,6 @@
+// Define variable
+def FLEET_TOKEN
+
 pipeline {
     agent any
     stages {
