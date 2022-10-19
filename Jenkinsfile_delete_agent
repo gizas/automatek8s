@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'AGENTID', defaultValue: '', description: 'What agent should id delete?')
+        string(name: 'AGENTID', description: 'What agent should id delete?')
         password(name: 'TOKENID', defaultValue: 'SECRET', description: 'Enter a token for the Managed Agent')
     }
     stages {
