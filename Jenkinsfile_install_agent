@@ -28,21 +28,21 @@ pipeline {
                         git push https://gizas:${PASSWORD}@github.com/gizas/automatek8s.git
                         '''
                         
-                        sh '''touch mytoken.txt
-                        echo $PASSWORD > mytoken.txt
-                        gh auth login --with-token < mytoken.txt
-                        gh pr create --title "Automated PR" --body "Agent Automated PR" --base main --head TestBranch
-                        gh pr merge --auto -m
-                    '''
+                    //     sh '''touch mytoken.txt
+                    //     echo $PASSWORD > mytoken.txt
+                    //     gh auth login --with-token < mytoken.txt
+                    //     gh pr create --title "Automated PR" --body "Agent Automated PR" --base main --head TestBranch
+                    //     gh pr merge --auto -m
+                    // '''
                     }
                 }
             }
         }
     }
-    post { 
-        success { 
-            echo 'Removing Clone directory...'
-            sh 'rm -rf automatek8s'
-        }
-    }
+    // post { 
+    //     success { 
+    //         echo 'Removing Clone directory...'
+    //         sh 'rm -rf automatek8s'
+    //     }
+    // }
 }
