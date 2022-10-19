@@ -4,7 +4,7 @@ pipeline {
         string(name: 'AGENTID', description: 'What agent should id delete?')
     }
     stages {
-        stage('Build') {
+        stage('Deleting Fleet and Policies') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'elastic', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh 'python3 --version'
@@ -12,7 +12,7 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
+        stage('Removing Manifests') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'GITHUB_PAT', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh 'git clone https://github.com/gizas/automatek8s.git'
