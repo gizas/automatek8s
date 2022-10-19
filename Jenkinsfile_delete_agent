@@ -8,10 +8,6 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'elastic', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh 'python3 --version'
-                sh '''
-                touch passowrd.txt
-                echo $PASSWORD > password.txt
-                '''
                 sh "python3 kibana_api_delete.py -apikey $PASSWORD -url https://elastic-package-stack_kibana_1:5601 -d -a ${params.AGENTID} -i agent-policy-id-automated"
                 }
             }
