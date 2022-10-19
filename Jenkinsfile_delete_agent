@@ -14,28 +14,10 @@ pipeline {
         }
         stage('Removing Manifests') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'GITHUB_PAT', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                sh 'git clone https://github.com/gizas/automatek8s.git'
-
-                dir("automatek8s/"){
-                    sh  '''
-                    pwd
-                    rm -rf manifests/
-                    ls -lrt
-                    git add ./
-                    git checkout TestBranch
-                    git config --global user.email "andreas.gkizas@elastic.co"
-                    git config --global user.name "gizas"
-                    git commit -m "Updating Manifest"
-                    git push https://gizas:${PASSWORD}@github.com/gizas/automatek8s.git
-                    cd ../ && rm -rf automatek8s
-                    '''                    
-                }
                 sh '''
                 curl https://raw.githubusercontent.com/elastic/elastic-agent/main/deploy/kubernetes/elastic-agent-managed-kubernetes.yaml --output elastic-agent-managed-kubernetes.yaml
                 kubectl delete -f elastic-agent-managed-kubernetes.yaml
                 '''
-                }
             }
         }
     }
