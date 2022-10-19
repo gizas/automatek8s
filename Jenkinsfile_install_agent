@@ -4,12 +4,47 @@ pipeline {
         password(name: 'TOKENID', defaultValue: 'SECRET', description: 'Enter a token for the Managed Agent')
     }
     stages {
-        stage('Build') {
+        stage('Create Managed Manifest') {
             steps {
                 sh 'curl https://raw.githubusercontent.com/elastic/elastic-agent/main/deploy/kubernetes/elastic-agent-managed-kubernetes.yaml --output elastic-agent-managed-kubernetes.yaml'
                 sh  "sed -i -e 's/token-id/${params.TOKENID}/g' elastic-agent-managed-kubernetes.yaml"
-                sh 'yes | cp -r elastic-agent-managed-kubernetes.yaml ./manifests'
             }
+        }
+        stage('Open PR') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'GITHUB_PAT', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    //Preparing the 
+                    sh '''git clone https://github.com/gizas/automatek8s.git
+                    mkdir -p automatek8s/manifests/
+                    yes | cp -r elastic-agent-managed-kubernetes.yaml automatek8s/manifests/
+                    '''
+                    dir("automatek8s/manifests/"){
+                        sh  '''
+                        pwd
+                        git checkout TestBranch
+                        git add ./
+                        git config --global user.email "andreas.gkizas@elastic.co"
+                        git config --global user.name "gizas"
+                        git commit -m "Updating Manifest"
+                        git push https://gizas:${PASSWORD}@github.com/gizas/automatek8s.git
+                        '''
+                        
+                        sh '''touch mytoken.txt
+                        echo $PASSWORD > mytoken.txt
+                        gh auth login --with-token < mytoken.txt
+                        gh pr create --title "Automated PR" --body "Agent Automated PR" --base main --head TestBranch
+                        gh pr merge --auto -m
+                    '''
+                    }
+                }
+            }
+        }
+    }
+    post { 
+        success { 
+            sh 'Removing Clone directory...'
+            sh 'pwd'
+            sh 'rm -rf automatek8s'
         }
     }
 }
