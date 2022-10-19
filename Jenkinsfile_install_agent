@@ -42,7 +42,7 @@ pipeline {
     }
     post { 
         success { 
-            sh 'Removing Clone directory...'
+            echo 'Removing Clone directory...'
             sh 'pwd'
             sh 'rm -rf automatek8s'
         }
