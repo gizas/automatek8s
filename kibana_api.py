@@ -27,8 +27,8 @@ my_parser.add_argument('-k8version',
                        '-k',
                        type=str,
                        nargs="?",
-                       const="1.22.1",
-                       default="1.22.1",
+                       const="1.26.0",
+                       default="1.26.0",
                        help='The Version of k8s package to be installed')                       
 
 args = my_parser.parse_args()
