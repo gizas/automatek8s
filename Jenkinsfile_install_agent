@@ -20,7 +20,6 @@ pipeline {
                     '''
                     dir("automatek8s/manifests/"){
                         sh  '''
-                        pwd
                         git checkout TestBranch
                         git add ./
                         git config --global user.email "andreas.gkizas@elastic.co"
@@ -39,10 +38,10 @@ pipeline {
             }
         }
     }
-    post { 
-        success { 
-            echo 'Removing Clone directory...'
-            sh 'rm -rf automatek8s'
-        }
-    }
+    // post { 
+    //     success { 
+    //         echo 'Removing Clone directory...'
+    //         sh 'rm -rf automatek8s'
+    //     }
+    // }
 }
