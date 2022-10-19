@@ -81,4 +81,4 @@ api_keys_values=x.json()
 for list in api_keys_values['list']:
     if list['policy_id']=="agent-policy-id-automated":
         if list['active'] is True:
-            print ("FLEET_ENROLLMENT_TOKEN:", list['api_key'])
+            print str(list['api_key'])
