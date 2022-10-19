@@ -2,14 +2,13 @@ pipeline {
     agent any
     parameters {
         string(name: 'AGENTID', description: 'What agent should id delete?')
-        password(name: 'TOKENID', defaultValue: 'SECRET', description: 'Enter a token for the Managed Agent')
     }
     stages {
         stage('Build') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'elastic', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh 'python3 --version'
-                sh 'python3 kibana_api_delete.py -apikey $PASSWORD -url https://elastic-package-stack_kibana_1:5601 -d -a $AGENTID -i agent-policy-id-automated'
+                sh 'python3 kibana_api_delete.py -apikey $PASSWORD -url https://elastic-package-stack_kibana_1:5601 -d -a ${params.AGENTID} -i agent-policy-id-automated'
                 }
             }
         }
