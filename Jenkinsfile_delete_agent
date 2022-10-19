@@ -12,7 +12,7 @@ pipeline {
                 touch passowrd.txt
                 echo $PASSWORD > password.txt
                 '''
-                sh 'python3 kibana_api_delete.py -apikey $PASSWORD -url https://elastic-package-stack_kibana_1:5601 -d -a ${params.AGENTID} -i agent-policy-id-automated'
+                sh "python3 kibana_api_delete.py -apikey $PASSWORD -url https://elastic-package-stack_kibana_1:5601 -d -a ${params.AGENTID} -i agent-policy-id-automated"
                 }
             }
         }
