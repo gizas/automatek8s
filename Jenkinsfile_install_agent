@@ -21,20 +21,20 @@ pipeline {
                     '''
                     dir("automatek8s/manifests/"){
                         sh  '''
-                        git checkout TestBranch
                         git add ./
+                        git checkout TestBranch
                         git config --global user.email "andreas.gkizas@elastic.co"
                         git config --global user.name "gizas"
                         git commit -m "Updating Manifest"
                         git push https://gizas:${PASSWORD}@github.com/gizas/automatek8s.git
                         '''
                         
-                    //     sh '''touch mytoken.txt
-                    //     echo $PASSWORD > mytoken.txt
-                    //     gh auth login --with-token < mytoken.txt
-                    //     gh pr create --title "Automated PR" --body "Agent Automated PR" --base main --head TestBranch
-                    //     gh pr merge --auto -m
-                    // '''
+                        sh '''touch mytoken.txt
+                        echo $PASSWORD > mytoken.txt
+                        gh auth login --with-token < mytoken.txt
+                        gh pr create --title "Automated PR" --body "Agent Automated PR" --base main --head TestBranch
+                        gh pr merge --auto -m
+                        '''
                     }
                 }
             }
