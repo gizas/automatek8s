@@ -81,5 +81,5 @@ api_keys_values=x.json()
 for list in api_keys_values['list']:
     if list['policy_id']=="agent-policy-id-automated":
         if list['active'] is True:
-            with open('finish.txt', 'wb') as fh:
+            with open('finish.txt', 'w') as fh:
               fh.write(list['api_key'])
