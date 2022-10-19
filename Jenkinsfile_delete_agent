@@ -12,16 +12,16 @@ pipeline {
                 }
             }
         }
-    }
-    post{
-        success{
-            withCredentials([usernamePassword(credentialsId: 'GITHUB_PAT', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                //Preparing the 
-                sh '''git clone https://github.com/gizas/automatek8s.git
-                '''
+        stage('Build') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'GITHUB_PAT', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                sh 'git clone https://github.com/gizas/automatek8s.git'
+
                 dir("automatek8s/"){
                     sh  '''
+                    pwd
                     rm -rf manifests/
+                    ls -lrt
                     git add ./
                     git checkout TestBranch
                     git config --global user.email "andreas.gkizas@elastic.co"
@@ -35,6 +35,7 @@ pipeline {
                 curl https://raw.githubusercontent.com/elastic/elastic-agent/main/deploy/kubernetes/elastic-agent-managed-kubernetes.yaml --output elastic-agent-managed-kubernetes.yaml
                 kubectl delete -f elastic-agent-managed-kubernetes.yaml
                 '''
+                }
             }
         }
     }
