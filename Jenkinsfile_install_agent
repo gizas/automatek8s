@@ -15,26 +15,23 @@ pipeline {
             stage('Open PR') {
                 steps {
                     //Preparing the 
-                    sh "
-                    git clone https://github.com/gizas/automatek8s.git
+                    sh '''git clone https://github.com/gizas/automatek8s.git
                     yes | cp -r manifests/elastic-agent-managed-kubernetes.yaml ../automatek8s/manifests/
                     cd ../automatek8s/manifests/
-                    "
+                    '''
                     
-                    sh  "
-                    git fetch --all
+                    sh  '''git fetch --all
                     git checkout TestBranch
                     git add manifests/elastic-agent-managed-kubernetes.yaml
-                    git commit -m 'Updating Manifest'
+                    git commit -m "Updating Manifest"
                     git push https://gizas:${PASSWORD}@github.com/gizas/automatek8s.git
-                    "
+                    '''
                     
-                    sh "
-                    touch mytoken.txt
+                    sh '''touch mytoken.txt
                     echo $PASSWORD > mytoken.txt
                     gh auth login --with-token < mytoken.txt
-                    gh pr create --title 'Automated PR' --body 'Agent Automated PR' --base main --head TestBranch
-                    "
+                    gh pr create --title "Automated PR" --body "Agent Automated PR" --base main --head TestBranch
+                    '''
                 }
             }
         }
