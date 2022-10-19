@@ -22,7 +22,7 @@ pipeline {
                         sh  '''git fetch --all
                         pwd
                         git checkout TestBranch
-                        git add manifests/elastic-agent-managed-kubernetes.yaml
+                        git add elastic-agent-managed-kubernetes.yaml
                         git commit -m "Updating Manifest"
                         git push https://gizas:${PASSWORD}@github.com/gizas/automatek8s.git
                         '''
