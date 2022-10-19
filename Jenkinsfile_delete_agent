@@ -18,16 +18,17 @@ pipeline {
             withCredentials([usernamePassword(credentialsId: 'GITHUB_PAT', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 //Preparing the 
                 sh '''git clone https://github.com/gizas/automatek8s.git
-                rm -rf automatek8s/manifests/
                 '''
                 dir("automatek8s/"){
                     sh  '''
-                    git checkout TestBranch
+                    rm -rf manifests/
                     git add ./
+                    git checkout TestBranch
                     git config --global user.email "andreas.gkizas@elastic.co"
                     git config --global user.name "gizas"
                     git commit -m "Updating Manifest"
                     git push https://gizas:${PASSWORD}@github.com/gizas/automatek8s.git
+                    cd ../ && rm -rf automatek8s
                     '''                    
                 }
             }
