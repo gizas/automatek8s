@@ -39,10 +39,10 @@ pipeline {
             }
         }
     }
-    // post { 
-    //     success { 
-    //         echo 'Removing Clone directory...'
-    //         sh 'rm -rf automatek8s'
-    //     }
-    // }
+    post { 
+        success { 
+            echo 'Removing Clone directory...'
+            sh 'rm -rf automatek8s'
+        }
+    }
 }
