@@ -10,7 +10,7 @@ pipeline {
                 sh  "sed -i -e 's/token-id/${params.TOKENID}/g' -e 's/8.3.0/8.5.0-SNAPSHOT/g' elastic-agent-managed-kubernetes.yaml"
             }
         }
-        stage('Open PR') {
+        stage('Update Branch') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'GITHUB_PAT', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     //Preparing the 
