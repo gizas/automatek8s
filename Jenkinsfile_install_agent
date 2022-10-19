@@ -33,6 +33,7 @@ pipeline {
                         echo $PASSWORD > mytoken.txt
                         gh auth login --with-token < mytoken.txt
                         gh pr create --title "Automated PR" --body "Agent Automated PR" --base main --head TestBranch
+                        gh pr merge --auto -m
                     '''
                     }
                 }
