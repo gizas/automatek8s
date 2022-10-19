@@ -6,6 +6,6 @@
     "monitoring_enabled": [
       "metrics"
     ],
-    "data_output_id": "",
-    "monitoring_output_id": ""
+    "data_output_id": "2cdfeb20-4f9f-11ed-b9ca-b5ae8eb62464",
+    "monitoring_output_id": "2cdfeb20-4f9f-11ed-b9ca-b5ae8eb62464"
 }
