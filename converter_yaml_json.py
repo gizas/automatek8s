@@ -2,6 +2,8 @@
 import yaml
 import json
 
+import glob
+
 # All files and directories ending with .json will be matched and marked for transformation:
 for jsonFile in glob.glob("./*.yaml"):
     with open(jsonFile, 'r') as file:
