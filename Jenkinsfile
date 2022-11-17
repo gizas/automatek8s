@@ -10,7 +10,7 @@ pipeline {
                     output = sh(script: 'python3 kibana_api.py -apikey $PASSWORD -url https://elastic-package-stack_kibana_1:5601 -v 1.27.1',returnStdout: true).trim()
                     echo output
 
-                    token = sh(script: 'echo ${output} | ',returnStdout: true).trim()
+                    token = sh(script: 'echo ${output} | tail -1 ',returnStdout: true).trim()
                     echo token
 
                     }
