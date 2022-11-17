@@ -27,18 +27,29 @@ my_parser.add_argument('-k8version',
                        '-v',
                        type=str,
                        nargs="?",
-                       const="1.27.1",
-                       default="1.27.1",
-                       help='The Version of k8s package to be installed')                       
+                       const="1.27.0",
+                       default="1.27.0",
+                       help='The Version of k8s package to be installed')
+my_parser.add_argument('-agentId',
+                       '-a',
+                       type=str,
+                       nargs="?",
+                       help='Flag to force deletion of specific Agent') 
+my_parser.add_argument('-agentPolicyId',
+                       '-i',
+                       type=str,
+                       nargs="?",
+                       const="agent-policy-id-automated",
+                       help='Flag to force deletion of specific Agent policy')                         
 my_parser.add_argument('-agentpolicy',
-                       '-ap',
+                       '-ag',
                        type=str,
                        nargs="?",
                        const="agentpolicy.yaml.json",
                        default="agentpolicy.yaml.json",
                        help='The Agent Policy file in json format')
 my_parser.add_argument('-k8spolicy',
-                       '-kp',
+                       '-k8',
                        type=str,
                        nargs="?",
                        const="k8spolicy.yaml.json",
@@ -59,42 +70,21 @@ print ("Starting Automation for ... ", url)
 
 headersList = {"Authorization": "ApiKey "+args.apikey, "kbn-xsrf": "true" , "Content-Type": "application/json"}
 
-# #Get epm packages
-# x = requests.get(url+"epm/packages", headers = headersList, verify=False)
-# print(x.text)
-
-# #Get install k8s package
-x = requests.post(url+"epm/packages/kubernetes/"+args.k8version, headers = headersList, verify=False)
-
-if x.status_code == 200:
-    print("OK- Installing k8s Package version", args.k8version)
-else:
-    print("Error- Installing k8s Package version %d", args.k8version)
-    print(x.text)
-    exit(1)
-
-# #Create Agent Policy
-x = requests.post(url+"agent_policies", headers = headersList, verify=False, json = agentPolicyBody)
-if x.status_code == 200:
-    print("OK- Installing Agent Policy")
-else:
-    print("Error- Installing Agent Policy")
-    print(x.text)
-    exit(1)
-
-# #Create Package Policy
-x = requests.post(url+"package_policies", headers = headersList, verify=False, json = k8sPolicyBody)
-if x.status_code == 200:
-    print("OK- Installing Package Policy")
-else:
-    print("Error- Installing Package Policy")
-    print(x.text)
-    exit(1)
 
 #Retrieve the key of the new Agent Policy
-x = requests.get(url+"enrollment_api_keys", headers = headersList, verify=False)
-api_keys_values=x.json()
-for list in api_keys_values['list']:
+x = requests.get(url+"package_policies", headers = headersList, verify=False)
+packagePolicies=x.json() 
+for list in packagePolicies['items']:
     if list['policy_id']=="agent-policy-id-automated":
-        if list['active'] is True:
-            print (list['api_key'])
+            print("Package Policy to be updated: "+list['id'])
+            packagePolicyId=list['id']
+
+# Update Package Policy
+x = requests.put(url+"package_policies/"+packagePolicyId, headers = headersList, verify=False, json = k8sPolicyBody)
+if x.status_code == 200:
+    print("OK- Updating Package Policy")
+else:
+    print("Error- Updating Package Policy")
+    print(x.text)
+    exit(1)
+

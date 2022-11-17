@@ -11,20 +11,23 @@ my_parser = argparse.ArgumentParser(description='List the content of a folder')
 
 # Add the arguments
 my_parser.add_argument('-url',
+                       '-u',
                        type=str,
                        nargs="?",
                        const="https://localhost:5601",
                        default="https://localhost:5601",
                        help='The url of Kibana API')
 my_parser.add_argument('-apikey',
+                       '-k',
                        type=str,
                        required=True,
                        help='The APIKEY referring to token able to make API calls')
 my_parser.add_argument('-k8version',
+                       '-v',
                        type=str,
                        nargs="?",
-                       const="1.22.1",
-                       default="1.22.1",
+                       const="1.27.1",
+                       default="1.2.1",
                        help='The Version of k8s package to be installed')                       
 my_parser.add_argument('-delete',
                        '-d',
@@ -44,15 +47,28 @@ my_parser.add_argument('-agentPolicyId',
                        nargs="?",
                        const="agent-policy-id-automated",
                        help='Flag to force deletion of specific Agent policy')    
-
+my_parser.add_argument('-agentpolicy',
+                       '-ap',
+                       type=str,
+                       nargs="?",
+                       const="agentpolicy.yaml.json",
+                       default="agentpolicy.yaml.json",
+                       help='The Agent Policy file in json format')
+my_parser.add_argument('-k8spolicy',
+                       '-kp',
+                       type=str,
+                       nargs="?",
+                       const="k8spolicy.yaml.json",
+                       default="k8spolicy.yaml.json",
+                       help='The Kubernetes Policy file in json format')
 args = my_parser.parse_args()
 
 #Parse Relevant Policies
-with open('agentpolicy.json') as agentPolicy:
+with open(args.agentpolicy) as agentPolicy:
    agentPolicyBody = json.load(agentPolicy)
 
-with open('k8spolicy.json') as k8sPolicy:
-   k8sPolicyBody = json.load(k8sPolicy)
+# with open(args.k8spolicy) as k8sPolicy:
+#    k8sPolicyBody = json.load(k8sPolicy)
 
 
 url=args.url+"/api/fleet/"
