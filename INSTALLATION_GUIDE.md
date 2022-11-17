@@ -131,7 +131,7 @@ Jenkins need to be able to run python script that will actually run the Kibana A
 ❯ docker exec -it -u root jenkins-local bash
 apt update
 apt install python3.9
-apt install pip3
+apt install pip
 pip3 install pyyaml
 pip3 install requests
 ```

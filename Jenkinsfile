@@ -7,7 +7,7 @@ pipeline {
                     script {
                     sh 'python3 --version'
                     //sh 'python3 kibana_api.py -apikey $PASSWORD -url https://elastic-package-stack_kibana_1:5601 -k 1.26.0'
-                    output = sh(script: 'python3 kibana_api.py -apikey $PASSWORD -url https://elastic-package-stack_kibana_1:5601 -k 1.26.0',returnStdout: true).trim()
+                    output = sh(script: 'python3 kibana_api.py -apikey $PASSWORD -url https://elastic-package-stack_kibana_1:5601 -k 1.27.1',returnStdout: true).trim()
                     echo output
                     }
                 }
