@@ -1,4 +1,4 @@
 # automatek8s
 
-pip3 install pyyaml
-pip3 install requests
+Automating Kubernetes Observability in Elastic
+https://github.com/elastic/observability-dev/blob/main/docs/infraobs/cloudnative-monitoring/testing/api-kubernetes-automation.md
