@@ -13,5 +13,10 @@ pipeline {
                 }
             }    
         }
+        stage ('Starting ART job') {
+            build job: 'Install Managed Agent', parameters: [[$class: 'StringParameterValue', name: 'TOKENID', value: output]]
+        }
     }
+
+
 }
