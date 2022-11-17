@@ -75,8 +75,6 @@ Install following tools:
     ```bash
     docker container exec <ID of jenkins-local container> \
     sh -c "cat /var/jenkins_home/secrets/initialAdminPassword"
-
-    7bd87794d4d84d91a794fbfa827751ab
     ```
 
 4. Deploy Elastic Stack
