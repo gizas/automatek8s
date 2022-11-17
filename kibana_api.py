@@ -66,30 +66,32 @@ headersList = {"Authorization": "ApiKey "+args.apikey, "kbn-xsrf": "true" , "Con
 # #Get install k8s package
 x = requests.post(url+"epm/packages/kubernetes/"+args.k8version, headers = headersList, verify=False)
 
-if x.status_code == 200:
-    print("OK- Installing k8s Package version", args.k8version)
-else:
+if x.status_code != 200:
     print("Error- Installing k8s Package version %d", args.k8version)
     print(x.text)
     exit(1)
+#else:
+    #print("OK- Installing k8s Package version", args.k8version)
+
 
 # #Create Agent Policy
 x = requests.post(url+"agent_policies", headers = headersList, verify=False, json = agentPolicyBody)
-if x.status_code == 200:
-    print("OK- Installing Agent Policy")
-else:
+if x.status_code != 200:
     print("Error- Installing Agent Policy")
     print(x.text)
     exit(1)
+# else:
+#     print("OK- Installing Agent Policy")
+
 
 # #Create Package Policy
 x = requests.post(url+"package_policies", headers = headersList, verify=False, json = k8sPolicyBody)
-if x.status_code == 200:
-    print("OK- Installing Package Policy")
-else:
+if x.status_code != 200:
     print("Error- Installing Package Policy")
     print(x.text)
     exit(1)
+# else:
+#     print("OK- Installing Package Policy")
 
 #Retrieve the key of the new Agent Policy
 x = requests.get(url+"enrollment_api_keys", headers = headersList, verify=False)
