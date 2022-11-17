@@ -55,7 +55,7 @@ with open(args.k8spolicy) as k8sPolicy:
 
 
 url=args.url+"/api/fleet/"
-print ("Starting Automation for ... ", url)
+#print ("Starting Automation for ... ", url)
 
 headersList = {"Authorization": "ApiKey "+args.apikey, "kbn-xsrf": "true" , "Content-Type": "application/json"}
 

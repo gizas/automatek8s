@@ -9,10 +9,6 @@ pipeline {
                     //sh 'python3 kibana_api.py -apikey $PASSWORD -url https://elastic-package-stack_kibana_1:5601 -k 1.26.0'
                     output = sh(script: 'python3 kibana_api.py -apikey $PASSWORD -url https://elastic-package-stack_kibana_1:5601 -v 1.27.1',returnStdout: true).trim()
                     echo output
-
-                    token = sh(script: "grep ${output} | tail -n 1",returnStdout: true).trim()
-                    echo token
-
                     }
                 }
             }    
