@@ -140,7 +140,7 @@ Once installation is complete you can be able to configure your CI jobs inside J
 For more information if you want to configure Jenkins with Github SCM [here](https://www.cprime.com/resources/blog/how-to-integrate-jenkins-github/)
 
 Additionally you need to create the following two Credentials into your Jenkins Credential store. Both can be stored as normal UsernamePassword credentials. Our Jenkins samples make use of `WithCredentials` Plugin to read the provided credentials:
-- Github Token: We need this token in order Jenkins to be able to push and open PRs in your Github Repository. We need Jenkins to be able to push files in a given Github Branch because finally we need the new Elastic Agent  Manifest to be created. To create a Personal Access Token read [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+- Github Token: We need this token in order Jenkins to be able to push and open PRs in your Github Repository. We need Jenkins to be able to push files in a given Github Branch because finally we need the new Elastic Agent  Manifest to be created. To create a Personal Access Token read [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token). For the needs of this POC `repo, admin:repo_hook and user scopes` need to be allowed.
 - Elastic Token: Needed in order Jenkins to authenticate to Kibana API. Use  `Kibana API Token` of previous step
 
 

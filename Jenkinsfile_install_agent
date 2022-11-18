@@ -25,7 +25,7 @@ pipeline {
                         git config --global user.email "andreas.gkizas@elastic.co"
                         git config --global user.name "gizas"
                         git commit -m "Updating Manifest"
-                        git push https://gizas:${PASSWORD}@github.com/gizas/automatek8s.git
+                        git push https://${PASSWORD}@github.com/gizas/automatek8s.git
                         '''
                         
                         // sh '''touch mytoken.txt
