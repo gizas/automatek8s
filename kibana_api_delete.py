@@ -63,13 +63,6 @@ my_parser.add_argument('-k8spolicy',
                        help='The Kubernetes Policy file in json format')
 args = my_parser.parse_args()
 
-#Parse Relevant Policies
-with open(args.agentpolicy) as agentPolicy:
-   agentPolicyBody = json.load(agentPolicy)
-
-# with open(args.k8spolicy) as k8sPolicy:
-#    k8sPolicyBody = json.load(k8sPolicy)
-
 
 url=args.url+"/api/fleet/"
 print ("Starting Automation for ... ", url)
