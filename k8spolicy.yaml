@@ -11,7 +11,7 @@ output_id: ''
 inputs:
 - type: kubernetes/metrics
   policy_template: kubelet
-  enabled: true
+  enabled: false
   streams:
   - enabled: true
     data_stream:
