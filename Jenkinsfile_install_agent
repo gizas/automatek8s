@@ -7,7 +7,7 @@ pipeline {
         stage('Create Managed Manifest') {
             steps {
                 sh 'curl https://raw.githubusercontent.com/elastic/elastic-agent/main/deploy/kubernetes/elastic-agent-managed-kubernetes.yaml --output elastic-agent-managed-kubernetes.yaml'
-                sh  "sed -i -e 's/token-id/${params.TOKENID}/g' -e 's/8.3.0/8.4.1/g' elastic-agent-managed-kubernetes.yaml"
+                sh  "sed -i -e 's/token-id/${params.TOKENID}/g' -e 's/8.3.0/8.8.0/g' elastic-agent-managed-kubernetes.yaml"
             }
         }
         stage('Update Branch') {
