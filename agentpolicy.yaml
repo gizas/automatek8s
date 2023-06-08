@@ -5,5 +5,5 @@ namespace: default
 description: Agent policy created from API
 monitoring_enabled:
 - metrics
-data_output_id: dacd60d0-05e0-11ee-bb22-a91d6e5aa45d
-monitoring_output_id: dacd60d0-05e0-11ee-bb22-a91d6e5aa45d
+data_output_id: e65dcd50-05e9-11ee-a3ef-07f3718576ae
+monitoring_output_id: e65dcd50-05e9-11ee-a3ef-07f3718576ae
