@@ -5,5 +5,5 @@ namespace: default
 description: Agent policy created from API
 monitoring_enabled:
 - metrics
-data_output_id: c1d89c10-05d7-11ee-9e45-95155eed0413
-monitoring_output_id: c1d89c10-05d7-11ee-9e45-95155eed0413
+data_output_id: fleet-default-output
+monitoring_output_id: fleet-default-output
