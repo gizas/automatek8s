@@ -2,7 +2,7 @@
 policy_id: "agent-policy-id-automated"
 package:
   name: kubernetes
-  version: 1.41.0
+  version: 1.42.0
 name: kubernetes-1
 description: 'Test Policy that we automated'
 namespace: default
